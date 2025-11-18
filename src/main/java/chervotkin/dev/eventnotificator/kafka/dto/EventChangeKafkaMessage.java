@@ -15,9 +15,9 @@ public class EventChangeKafkaMessage {
     private FieldChangeString name;
     private FieldChangeInteger maxPlaces;
     private FieldChangeDateTime date;
-    private FieldChangeDecimal cost;
+    private FieldChangeInteger cost;
     private FieldChangeInteger duration;
-    private FieldChangeInteger locationId;
+    private FieldChangeLong locationId;
     private FieldChangeStatus status;
 
     public EventChangeKafkaMessage() {}
@@ -31,9 +31,9 @@ public class EventChangeKafkaMessage {
             @JsonProperty("name") FieldChangeString name,
             @JsonProperty("maxPlaces") FieldChangeInteger maxPlaces,
             @JsonProperty("date") FieldChangeDateTime date,
-            @JsonProperty("cost") FieldChangeDecimal cost,
+            @JsonProperty("cost") FieldChangeInteger cost,
             @JsonProperty("duration") FieldChangeInteger duration,
-            @JsonProperty("locationId") FieldChangeInteger locationId,
+            @JsonProperty("locationId") FieldChangeLong locationId,
             @JsonProperty("status") FieldChangeStatus status
     ) {
         this.eventId = eventId;
@@ -105,11 +105,11 @@ public class EventChangeKafkaMessage {
         this.date = date;
     }
 
-    public FieldChangeDecimal getCost() {
+    public FieldChangeInteger getCost() {
         return cost;
     }
 
-    public void setCost(FieldChangeDecimal cost) {
+    public void setCost(FieldChangeInteger cost) {
         this.cost = cost;
     }
 
@@ -121,11 +121,11 @@ public class EventChangeKafkaMessage {
         this.duration = duration;
     }
 
-    public FieldChangeInteger getLocationId() {
+    public FieldChangeLong getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(FieldChangeInteger locationId) {
+    public void setLocationId(FieldChangeLong locationId) {
         this.locationId = locationId;
     }
 
