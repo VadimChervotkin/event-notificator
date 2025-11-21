@@ -1,55 +1,54 @@
 package chervotkin.dev.eventmanager.kafka.dto;
 
-import chervotkin.dev.eventnotificator.kafka.dto.FieldChange;
-
 import java.util.List;
 
 public class EventChangeKafkaMessage {
 
     private Long eventId;
+    private List<Long> users;
     private Long ownerId;
     private Long changedById;
-    private List<Long> users;
 
-    private List<FieldChange> changes;
+    private FieldChangeString name;
+    private FieldChangeInteger maxPlaces;
+    private FieldChangeDateTime date;
+    private FieldChangeInteger cost;
+    private FieldChangeInteger duration;
+    private FieldChangeLong locationId;
+    private FieldChangeStatus status;
 
-    public Long getEventId() {
-        return eventId;
-    }
+    public EventChangeKafkaMessage() {}
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
+    public Long getEventId() { return eventId; }
+    public void setEventId(Long eventId) { this.eventId = eventId; }
 
-    public Long getOwnerId() {
-        return ownerId;
-    }
+    public List<Long> getUsers() { return users; }
+    public void setUsers(List<Long> users) { this.users = users; }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
+    public Long getOwnerId() { return ownerId; }
+    public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
 
-    public Long getChangedById() {
-        return changedById;
-    }
+    public Long getChangedById() { return changedById; }
+    public void setChangedById(Long changedById) { this.changedById = changedById; }
 
-    public void setChangedById(Long changedById) {
-        this.changedById = changedById;
-    }
+    public FieldChangeString getName() { return name; }
+    public void setName(FieldChangeString name) { this.name = name; }
 
-    public List<Long> getUsers() {
-        return users;
-    }
+    public FieldChangeInteger getMaxPlaces() { return maxPlaces; }
+    public void setMaxPlaces(FieldChangeInteger maxPlaces) { this.maxPlaces = maxPlaces; }
 
-    public void setUsers(List<Long> users) {
-        this.users = users;
-    }
+    public FieldChangeDateTime getDate() { return date; }
+    public void setDate(FieldChangeDateTime date) { this.date = date; }
 
-    public List<FieldChange> getChanges() {
-        return changes;
-    }
+    public FieldChangeInteger getCost() { return cost; }
+    public void setCost(FieldChangeInteger cost) { this.cost = cost; }
 
-    public void setChanges(List<FieldChange> changes) {
-        this.changes = changes;
-    }
+    public FieldChangeInteger getDuration() { return duration; }
+    public void setDuration(FieldChangeInteger duration) { this.duration = duration; }
+
+    public FieldChangeLong getLocationId() { return locationId; }
+    public void setLocationId(FieldChangeLong locationId) { this.locationId = locationId; }
+
+    public FieldChangeStatus getStatus() { return status; }
+    public void setStatus(FieldChangeStatus status) { this.status = status; }
 }

@@ -1,5 +1,6 @@
 package chervotkin.dev.eventnotificator.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,21 +15,24 @@ public class JwtTokenManager {
 
     private final Key signKey;
 
-    public JwtTokenManager(
-            @Value("${jwt.sign-key}") String signKey
-    ) {
+    public JwtTokenManager(@Value("${jwt.sign-key}") String key) {
         this.signKey = new SecretKeySpec(
-                signKey.getBytes(StandardCharsets.UTF_8),
+                key.getBytes(StandardCharsets.UTF_8),
                 SignatureAlgorithm.HS256.getJcaName()
         );
     }
 
+    private Claims getClaims(String token) {
+        return Jwts.parser()
+                .setSigningKey(signKey)
+                .build()
+                .parseClaimsJws(token)
+                .getPayload();
+    }
+
     public boolean isTokenValid(String token) {
         try {
-            Jwts.parser()
-                    .setSigningKey(signKey)
-                    .build()
-                    .parse(token);
+            getClaims(token);
             return true;
         } catch (Exception e) {
             return false;
@@ -36,20 +40,20 @@ public class JwtTokenManager {
     }
 
     public String getLoginFromToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(signKey)
-                .build()
-                .parseClaimsJws(token)
-                .getPayload()
-                .getSubject();
+        return getClaims(token).getSubject();
     }
 
     public String getRoleFromToken(String token) {
+        return getClaims(token).get("role", String.class);
+    }
+
+    public Long getUserIdFromToken(String jwt) {
         return Jwts.parser()
                 .setSigningKey(signKey)
                 .build()
-                .parseClaimsJws(token)
+                .parseClaimsJws(jwt)
                 .getPayload()
-                .get("role", String.class);
+                .get("userId", Long.class);
     }
+
 }
