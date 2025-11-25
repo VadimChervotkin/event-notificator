@@ -1,4 +1,4 @@
-package chervotkin.dev.eventnotificator.kafka.dto;
+package chervotkin.dev.eventmanager.kafka.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
